@@ -2,10 +2,9 @@ package dev.java10x.EventClean.core.usecases;
 
 import dev.java10x.EventClean.core.entities.Evento;
 
-public class criarEventoCaseImpl implements criarEventoCase{
+public class buscarEventoPorIdCaseImpl implements buscarEventoPorIdCase{
 
-    @Override
-    public Evento execute(Evento evento) {
+    public Evento execute (Long id){
         return null;
     }
 }
