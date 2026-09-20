@@ -1,10 +1,7 @@
 package dev.java10x.EventClean.infrastructure.configuration;
 
 import dev.java10x.EventClean.core.gateway.EventoGateway;
-import dev.java10x.EventClean.core.usecases.BuscarEventoUseCase;
-import dev.java10x.EventClean.core.usecases.BuscarEventoUseCaseImpl;
-import dev.java10x.EventClean.core.usecases.CriarEventoUseCase;
-import dev.java10x.EventClean.core.usecases.CriarEventoUseCaseImpl;
+import dev.java10x.EventClean.core.usecases.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,5 +16,9 @@ public class BeanConfiguration {
     @Bean
     public BuscarEventoUseCase buscarEventoCase(EventoGateway eventoGateway){
         return new BuscarEventoUseCaseImpl(eventoGateway);
+    }
+    @Bean
+    public BuscarEventoPorIdUseCase buscarEventoPorIdUseCase(EventoGateway eventoGateway){
+        return new BuscarEventoPorIdUseCaseImpl(eventoGateway);
     }
 }

@@ -2,6 +2,7 @@ package dev.java10x.EventClean.infrastructure.gateway;
 
 import dev.java10x.EventClean.core.entities.Evento;
 import dev.java10x.EventClean.core.gateway.EventoGateway;
+import dev.java10x.EventClean.infrastructure.exception.ValidationException;
 import dev.java10x.EventClean.infrastructure.mapper.EventoEntityMapper;
 import dev.java10x.EventClean.infrastructure.persistence.EventoEntity;
 import dev.java10x.EventClean.infrastructure.persistence.EventoRepository;
@@ -34,5 +35,11 @@ public class EventoRepositoryGateway implements EventoGateway {
     @Override
     public Boolean existsByIdentificador(String identificador) {
         return eventoRepository.findEventoByIdentificador(identificador) != null;
+    }
+
+    @Override
+    public Evento buscarEventoPorId(Long id) {
+        EventoEntity evento = eventoRepository.findById(id).orElseThrow(() -> new ValidationException("Evento não encontrado"));
+        return mapper.toDomain(evento);
     }
 }

@@ -17,4 +17,12 @@ public class GlobalExceptionHandler {
         response.put("message: ", "Evento com identificador duplicado.");
         return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
     }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<Map<String,String>> handleValidationException(ValidationException ex){
+        Map<String, String> response = new HashMap<>();
+        response.put("error: ", ex.getMessage());
+        response.put("message: ", "Recurso não encontrado.");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
 }
