@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -34,12 +35,17 @@ public class EventoRepositoryGateway implements EventoGateway {
 
     @Override
     public Boolean existsByIdentificador(String identificador) {
-        return eventoRepository.findEventoByIdentificador(identificador) != null;
+        return eventoRepository.findEventoByIdentificador(identificador).isPresent();
     }
 
     @Override
     public Evento buscarEventoPorId(Long id) {
         EventoEntity evento = eventoRepository.findById(id).orElseThrow(() -> new ValidationException("Evento não encontrado"));
         return mapper.toDomain(evento);
+    }
+
+    @Override
+    public Optional<Evento> filtrarIdentificadorEvento(String identificador) {
+        return eventoRepository.findEventoByIdentificador(identificador);
     }
 }

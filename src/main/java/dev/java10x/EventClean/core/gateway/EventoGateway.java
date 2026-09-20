@@ -3,6 +3,7 @@ package dev.java10x.EventClean.core.gateway;
 import dev.java10x.EventClean.core.entities.Evento;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface EventoGateway {
 
@@ -13,4 +14,6 @@ public interface EventoGateway {
     Boolean existsByIdentificador(String identificador);
 
     Evento buscarEventoPorId(Long id);
+
+    Optional<Evento> filtrarIdentificadorEvento(String identificador);
 }

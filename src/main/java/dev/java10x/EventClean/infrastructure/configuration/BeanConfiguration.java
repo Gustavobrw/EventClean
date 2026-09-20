@@ -9,16 +9,22 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfiguration {
 
     @Bean
-    public CriarEventoUseCase criarEventoUseCase(EventoGateway eventoGateway){
+    public CriarEventoUseCase criarEventoUseCase(EventoGateway eventoGateway) {
         return new CriarEventoUseCaseImpl(eventoGateway);
     }
 
     @Bean
-    public BuscarEventoUseCase buscarEventoCase(EventoGateway eventoGateway){
+    public BuscarEventoUseCase buscarEventoCase(EventoGateway eventoGateway) {
         return new BuscarEventoUseCaseImpl(eventoGateway);
     }
+
     @Bean
-    public BuscarEventoPorIdUseCase buscarEventoPorIdUseCase(EventoGateway eventoGateway){
+    public BuscarEventoPorIdUseCase buscarEventoPorIdUseCase(EventoGateway eventoGateway) {
         return new BuscarEventoPorIdUseCaseImpl(eventoGateway);
+    }
+
+    @Bean
+    public FiltrarIdentificadorEventoUseCase filtrarIdentificadorEventoUseCase(EventoGateway eventoGateway) {
+        return new FiltrarIdentificadorEventoUseCaseImpl(eventoGateway);
     }
 }
