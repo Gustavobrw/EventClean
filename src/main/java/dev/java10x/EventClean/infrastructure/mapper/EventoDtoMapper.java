@@ -2,6 +2,7 @@ package dev.java10x.EventClean.infrastructure.mapper;
 
 import dev.java10x.EventClean.core.entities.Evento;
 import dev.java10x.EventClean.infrastructure.dtos.EventoDto;
+import dev.java10x.EventClean.infrastructure.dtos.EventoRequestDto;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,12 +23,12 @@ public class EventoDtoMapper {
         );
     }
 
-    public Evento ToEntity(EventoDto eventoDto){
+    public Evento ToEntity(EventoRequestDto eventoDto){
         return new Evento(
-                eventoDto.id(),
+                null,
                 eventoDto.nome(),
                 eventoDto.descricao(),
-                eventoDto.identificador(),
+                null,
                 eventoDto.dataInico(),
                 eventoDto.dataFim(),
                 eventoDto.localEvento(),

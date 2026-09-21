@@ -16,4 +16,6 @@ public interface EventoGateway {
     Evento buscarEventoPorId(Long id);
 
     Optional<Evento> filtrarIdentificadorEvento(String identificador);
+
+    String generateRandomIndentificador();
 }

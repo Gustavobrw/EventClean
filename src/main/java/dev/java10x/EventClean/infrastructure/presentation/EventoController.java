@@ -6,6 +6,7 @@ import dev.java10x.EventClean.core.usecases.BuscarEventoUseCase;
 import dev.java10x.EventClean.core.usecases.CriarEventoUseCase;
 import dev.java10x.EventClean.core.usecases.FiltrarIdentificadorEventoUseCase;
 import dev.java10x.EventClean.infrastructure.dtos.EventoDto;
+import dev.java10x.EventClean.infrastructure.dtos.EventoRequestDto;
 import dev.java10x.EventClean.infrastructure.mapper.EventoDtoMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class EventoController {
     }
 
     @PostMapping("criarevento")
-    public ResponseEntity<Map<String, Object>> criarEvento(@RequestBody EventoDto eventoDto) {
+    public ResponseEntity<Map<String, Object>> criarEvento(@RequestBody EventoRequestDto eventoDto) {
         Evento novoEvento = criarEventoUseCase.execute(eventoDtoMapper.ToEntity(eventoDto));
 
         Map<String, Object> response = new HashMap<>();

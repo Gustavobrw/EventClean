@@ -9,8 +9,7 @@ import dev.java10x.EventClean.infrastructure.persistence.EventoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 @RequiredArgsConstructor
@@ -22,6 +21,8 @@ public class EventoRepositoryGateway implements EventoGateway {
     @Override
     public Evento criarEvento(Evento evento) {
         EventoEntity entity = mapper.toEntity(evento);
+        String identificador = generateRandomIndentificador();
+        entity.setIdentificador(identificador);
         EventoEntity novoEvento = eventoRepository.save(entity);
         return mapper.toDomain(novoEvento);
     }
@@ -47,5 +48,31 @@ public class EventoRepositoryGateway implements EventoGateway {
     @Override
     public Optional<Evento> filtrarIdentificadorEvento(String identificador) {
         return eventoRepository.findEventoByIdentificador(identificador);
+    }
+
+    @Override
+    public String generateRandomIndentificador() {
+        String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String numeros= "0123456789";
+        Random random = new Random();
+
+        List<Character> caracteres = new ArrayList<>();
+        for(int i = 0 ; i < 3 ; i++){
+            int index = random.nextInt(letras.length());
+            caracteres.add(letras.charAt(index));
+        }
+        for(int i = 0 ; i < 3 ; i++){
+            int index = random.nextInt(numeros.length());
+            caracteres.add(numeros.charAt(index));
+        }
+
+        Collections.shuffle(caracteres, random);
+
+        StringBuilder generate = new StringBuilder();
+        for (char c : caracteres) {
+            generate.append(c);
+        }
+
+        return generate.toString();
     }
 }
